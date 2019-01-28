@@ -1,0 +1,57 @@
+.login-page {
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    
+}
+.login-form {
+    text-align: center;
+    width: 324px;
+    height: 297px;
+    margin: 160px auto 0;
+    /* border: 1px solid red; */
+}
+.sign-title {
+    font-weight: bold;
+    color: #396afe;
+    font-size: 30px;
+}
+.input {
+    width: 240px;
+    height: 30px;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    border: none;
+    outline: none;
+    overflow: visible;
+    box-sizing: border-box;
+    border-bottom: 1px solid black;
+}
+.sign-in {
+    background-color: #2878ff;
+    margin: 10px auto;
+    font-size: 14px;
+    color: white;
+    border-radius: 4px;
+    line-height: 40px;
+    width: 240px;
+
+}
+.other {
+    text-align: left;
+    font-size: 8px;
+    /* width: 140px; */
+}
+.sign-up { 
+    width: 50px;
+    float: left;
+    margin-left: 40px;
+}
+.forgot {
+    width: 90px;
+    float: right;
+    margin-right: 40px;
+}
