@@ -26,7 +26,8 @@ nbdist/
 
 
 ### react
-node_modules
+./front/node_modules
+front/node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
