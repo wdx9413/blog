@@ -16,4 +16,8 @@ public class UserService {
     public List<User> getUserList() {
         return userMapper.getUserList();
     }
+
+    public User testUserByName(String username) {
+        return userMapper.queryUserByUsername(username);
+    }
 }

@@ -3,13 +3,13 @@ package com.blog.controller;
 import com.blog.entity.User;
 import com.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:3000", "null"})
 public class UserController {
 
     @Autowired
@@ -20,7 +20,11 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    String login() {
+    String login(@RequestParam String username, @RequestParam String password) {
         return "";
+    }
+    @PostMapping("/testUsername")
+    boolean testUser(@RequestBody String username) {
+        return userService.testUserByName(username) != null;
     }
 }

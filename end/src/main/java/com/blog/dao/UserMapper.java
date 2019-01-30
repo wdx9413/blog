@@ -10,5 +10,6 @@ import java.util.List;
 public interface UserMapper {
     @Select("select id, username, phone from user")
     List<User> getUserList();
-
+    @Select("select id, username, phone from user where username=#{username}")
+    User queryUserByUsername(String username);
 }
