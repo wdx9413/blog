@@ -19,12 +19,4 @@ public class UserController {
         return userService.getUserList();
     }
 
-    @PostMapping("/login")
-    String login(@RequestParam String username, @RequestParam String password) {
-        return "";
-    }
-    @PostMapping("/testUsername")
-    boolean testUser(@RequestBody String username) {
-        return userService.testUserByName(username) != null;
-    }
 }

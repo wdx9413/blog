@@ -1,7 +1,7 @@
 package com.blog.service;
 
 import com.blog.entity.User;
-import com.blog.dao.UserMapper;
+import com.blog.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class UserService {
         return userMapper.getUserList();
     }
 
-    public User testUserByName(String username) {
-        return userMapper.queryUserByUsername(username);
+    public User findByName(String username) {
+        return userMapper.findByName(username);
     }
 }
