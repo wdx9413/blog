@@ -14,9 +14,6 @@ public class UserRealm extends AuthorizingRealm {
     @Autowired
     private UserService userService;
 
-//    @Autowired
-//    private PasswordHelper passwordHelper;
-
     /**
      * 权限校验
      * @param principalCollection
@@ -39,9 +36,6 @@ public class UserRealm extends AuthorizingRealm {
         String username = (String) authenticationToken.getPrincipal();
 
         User user = userService.findByName(username);
-//        System.out.println(user.getPassword());
-//        passwordHelper.encryptPassword(user);
-//        System.out.println(user.getPassword());
         if (user == null){
             throw new UnknownAccountException();
         }

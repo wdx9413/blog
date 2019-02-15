@@ -20,4 +20,8 @@ public class UserService {
     public User findByName(String username) {
         return userMapper.findByName(username);
     }
+
+    public void insertUser(User user) {
+        userMapper.insertUser(user);
+    }
 }

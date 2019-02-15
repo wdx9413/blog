@@ -5,6 +5,7 @@ import com.blog.entity.Result;
 import com.blog.entity.ResultEnums;
 import com.blog.entity.StatusCode;
 import com.blog.service.UserService;
+import com.blog.util.Convert;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -26,17 +27,10 @@ public class LoginController {
 
     @PostMapping("admin/login")
     public Result login(@RequestBody String data) {
-        String username = null;
-        String password = null;
-        String remember = null;
-        try {
-            Map<String, String> map = new ObjectMapper().readValue(data, HashMap.class);
-            username = map.get("username");
-            password = map.get("password");
-            remember = map.get("remember");
-        } catch (Exception e) {
-
-        }
+        Map<String, String> dataMap = Convert.jsonString2Map(data);
+        String username = dataMap.get("username");
+        String password = dataMap.get("password");
+        String remember = dataMap.get("remember");
         if (username != null && password != null) {
             Subject subject = SecurityUtils.getSubject();
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -64,6 +58,5 @@ public class LoginController {
 
         }
         return new Result(StatusCode.ERROR, ResultEnums.INNER_ERROR);
-
     }
 }
