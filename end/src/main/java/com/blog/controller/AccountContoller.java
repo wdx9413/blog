@@ -4,8 +4,10 @@ import com.blog.config.PasswordHelper;
 import com.blog.entity.Result;
 import com.blog.entity.ResultEnums;
 import com.blog.entity.StatusCode;
+import com.blog.entity.User;
 import com.blog.service.UserService;
 import com.blog.util.Convert;
+import com.blog.util.UUID;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -21,11 +23,13 @@ import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000", "null"})
-public class LoginController {
+public class AccountContoller {
     @Autowired
     UserService userService;
+    @Autowired
+    private PasswordHelper passwordHelper;
 
-    @PostMapping("admin/login")
+    @PostMapping("/login")
     public Result login(@RequestBody String data) {
         Map<String, String> dataMap = Convert.jsonString2Map(data);
         String username = dataMap.get("username");
@@ -58,5 +62,24 @@ public class LoginController {
 
         }
         return new Result(StatusCode.ERROR, ResultEnums.INNER_ERROR);
+    }
+
+    @PutMapping(value = "/register")
+    void register(@RequestBody String data) {
+        Map<String, String> map = Convert.jsonString2Map(data);
+        User user = new User();
+        user.setId(UUID.get());
+        user.setUsername(map.get("username"));
+        user.setPassword(map.get("password"));
+        user.setPhone(map.get("phone"));
+//        user.setSalt(UUID.get());
+        passwordHelper.encryptPassword(user);
+        System.out.println(user);
+        userService.insertUser(user);
+    }
+
+    @PostMapping("/testUser")
+    boolean testUser(@RequestBody String username) {
+        return userService.findByName(username) != null;
     }
 }

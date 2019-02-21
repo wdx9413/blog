@@ -116,23 +116,25 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setLoginUrl("/login");
 
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/admin/css/**", "anon");
-        filterChainDefinitionMap.put("/admin/img/**", "anon");
-        filterChainDefinitionMap.put("/admin/js/**", "anon");
-        filterChainDefinitionMap.put("/lib/**", "anon");
-        filterChainDefinitionMap.put("/public/admin/**", "anon");
-        filterChainDefinitionMap.put("/public/site/**", "anon");
-        filterChainDefinitionMap.put("/site/css/**", "anon");
-        filterChainDefinitionMap.put("/site/js/**", "anon");
-        filterChainDefinitionMap.put("/site/img/**", "anon");
-
-        filterChainDefinitionMap.put("/", "anon");
-        filterChainDefinitionMap.put("/site", "anon");
-        filterChainDefinitionMap.put("/site/**", "anon");
-
-        filterChainDefinitionMap.put("/logout", "logout");
+//        filterChainDefinitionMap.put("/admin/css/**", "anon");
+//        filterChainDefinitionMap.put("/admin/img/**", "anon");
+//        filterChainDefinitionMap.put("/admin/js/**", "anon");
+//        filterChainDefinitionMap.put("/lib/**", "anon");
+//        filterChainDefinitionMap.put("/public/admin/**", "anon");
+//        filterChainDefinitionMap.put("/public/site/**", "anon");
+//        filterChainDefinitionMap.put("/site/css/**", "anon");
+//        filterChainDefinitionMap.put("/site/js/**", "anon");
+//        filterChainDefinitionMap.put("/site/img/**", "anon");
+//
+//        filterChainDefinitionMap.put("/", "anon");
+//        filterChainDefinitionMap.put("/site", "anon");
+//        filterChainDefinitionMap.put("/site/**", "anon");
+//
+//        filterChainDefinitionMap.put("/logout", "logout");
 
         filterChainDefinitionMap.put("/login", "anon");
+        filterChainDefinitionMap.put("/register", "anon");
+        filterChainDefinitionMap.put("/testUser", "anon");
         filterChainDefinitionMap.put("/admin/login", "anon");
 
         filterChainDefinitionMap.put("/admin/**", "authc");

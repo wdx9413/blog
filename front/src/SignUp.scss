@@ -1,0 +1,54 @@
+.sign-up-page {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    .sign-up-form {
+        position: absolute;
+        width: 320px;
+        height: 260px;
+        background-color: rgba(0, 0, 0, 0.05);
+        top: 50%;
+        margin-top: -200px;
+        left: 50%;
+        margin-left: -140px;
+        border-radius: 4px;
+        box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.1);
+        .sign-up-title {
+            text-align: center;
+        }
+        .sign-up-line {
+            margin-top: 5px;
+            width: 300px;
+            vertical-align: middle;
+            .sign-up-input {
+                height: 20px;
+            }
+            .word {
+                display: inline-block;
+                width: 65px;
+                font-size: 14px;
+                line-height: 15px;
+                text-align: right;
+                margin-right: 10px;
+            }
+            .word-get {
+                text-align: center;
+                background-color: rgb(164, 201, 223);
+                margin-left: 8px;
+                vertical-align: middle;
+                border-radius: 2px;
+                box-shadow: 1px 2px 1px black;
+            }
+            .verify-input {
+                width: 135px;
+            }
+        }
+        .sign-up-send {
+            background-color: blue;
+            width: 60px;
+            margin: 15px auto 0;
+            border-radius: 5px;
+            box-shadow: 1px 3px 5px black;
+        }
+    }
+}
