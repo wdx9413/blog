@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './Login.scss';
+import '../styles/Login.scss';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -7,7 +7,6 @@ class Login extends Component {
         this.changePassword = this.changePassword.bind(this);
         
         this.sign_in = this.sign_in.bind(this);
-        this.sign_up = this.sign_up.bind(this);
         this.forgot = this.forgot.bind(this);
         this.state = {
             username: '',
@@ -60,6 +59,9 @@ class Login extends Component {
             .then(data => console.log(data))
             .catch(e => console.log(e));
         console.log('sign_in');
+    }
+    forgot() {
+        
     }
 }
 export default Login;
