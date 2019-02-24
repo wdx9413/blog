@@ -1,0 +1,26 @@
+.head {
+    background-color: rgb(155, 208, 233);
+    height: 50px;
+    vertical-align: middle;
+    line-height: 50px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    .head-icon {
+        margin-right: 100px;
+        height: 30px;
+        vertical-align: middle;
+        margin-left: -200px;
+    }
+    .head-list {
+        list-style-type: none;
+        display: inline-block;
+        margin: 0;
+        line-height: 15px;
+        vertical-align: middle;
+    }
+    .head-list-1 {
+        float: left;
+        width: 60px;
+    }
+}

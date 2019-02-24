@@ -1,0 +1,22 @@
+.article {
+    width: 60%;
+    background-color: white;
+    margin: 0 auto;
+    height: auto;
+    .title {
+        padding-top: 20px;
+    }
+    .info {
+        margin-left: 20px;
+        .author {
+            margin: 0 5px;
+        }
+        .date {
+            margin: 0 5px;
+        }
+    }
+    .content {
+        text-align: left;
+        margin: 50px 20px 0;
+    }
+}
