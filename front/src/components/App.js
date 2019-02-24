@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
 import '../styles/App.scss';
-import Head from './Head';
 import Home from './Home';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Back from './Back';
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Head></Head>
-        <Home></Home>
+        <Router>
+            <Switch>
+              <Route path='/admin' component={Back}></Route>
+              <Route path='/' component={Home}></Route>
+            </Switch>
+        </Router>
       </div>
     );
   }
