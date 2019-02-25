@@ -4,7 +4,7 @@ public class User {
     private String id;
     private String username;
     private String password;
-    private String photo;
+    private String avatar;
     private String phone;
     private String email;
     private String salt;
@@ -33,12 +33,12 @@ public class User {
         this.password = password;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getPhone() {
@@ -71,7 +71,7 @@ public class User {
                 "id='" + id + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", photo='" + photo + '\'' +
+                ", avatar='" + avatar + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", salt='" + salt + '\'' +
