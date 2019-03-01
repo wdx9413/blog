@@ -49,7 +49,7 @@ class SignUp extends Component {
     }
     
     testUsername(event) {
-        if (!(/^[A-Za-z]\w{5,}$/g).test(this.state.username)) {
+        if (!(/^[A-Za-z]\w{4,}$/g).test(this.state.username)) {
             console.log('no');
             return;
         }

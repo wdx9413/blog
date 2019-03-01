@@ -43,7 +43,6 @@ class Login extends Component {
         );
     }
     sign_in() {
-        // var data = `${this.state.username},${this.state.password}`;
         var data = {};
         data.username = this.state.username;
         data.password = this.state.password;
@@ -56,7 +55,10 @@ class Login extends Component {
             }
         )
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data);
+                this.props.history.push('/admin/main');
+            })
             .catch(e => console.log(e));
         console.log('sign_in');
     }
