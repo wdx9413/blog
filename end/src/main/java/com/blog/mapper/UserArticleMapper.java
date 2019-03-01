@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface UserArticleMapper {
 
-    @Insert("insert into user_article values(#{userId}, #{articleId}, #{state})")
-    void insert(@Param("userId") String userId, @Param("articleId") String articleId, @Param("state") Integer state);
+    @Insert("insert into user_article values(#{userId}, #{articleId})")
+    void insert(@Param("userId") String userId, @Param("articleId") String articleId);
 
 }

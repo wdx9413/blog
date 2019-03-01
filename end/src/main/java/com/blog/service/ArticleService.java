@@ -24,6 +24,22 @@ public class ArticleService {
     @Transactional
     public void insertArticleByUserId(String userId, Article article) {
         articleMapper.insertArticle(article);
-        userArticleMapper.insert(userId, article.getId(), article.getState());
+        userArticleMapper.insert(userId, article.getId());
+    }
+
+    public Article getArticleById(String id) {
+        return articleMapper.getArticleById(id);
+    }
+
+    public void deleteArticleById(String articleId) {
+        articleMapper.deleteArticleById(articleId);
+    }
+
+    public void updateArticle(Article article) {
+        articleMapper.updateArticle(article);
+    }
+
+    public List<Article> getArticleListByType(Integer type) {
+        return articleMapper.getArticleListByType(type);
     }
 }

@@ -61,4 +61,15 @@ public class Article {
         this.state = state;
     }
 
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", type=" + type +
+                ", date=" + date +
+                ", state=" + state +
+                '}';
+    }
 }

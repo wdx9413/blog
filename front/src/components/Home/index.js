@@ -1,12 +1,15 @@
 import React from 'react';
-import ItemList from './ItemList';
+import ItemList from '../../containers/ItemList';
 import '../../styles/Home.scss';
 import Head from './Head';
 import Foot from './Foot';
 import Article from './Article';
 import {Route, Switch} from 'react-router-dom';
 import NotMatch from '../NotMatch';
-export default class Home extends React.Component {
+export default class Home extends React.Component{
+    componentWillMount() {
+        this.props.setDefaultArticles();
+    }
     render() {
         return (
             <div>
@@ -22,6 +25,7 @@ export default class Home extends React.Component {
                 </div>
                 <Foot></Foot>
             </div>
-        );
+                
+        )
     }
 }

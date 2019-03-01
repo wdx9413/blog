@@ -31,10 +31,10 @@ public class AccountContoller {
 
     @PostMapping("/login")
     public Result login(@RequestBody String data) {
-        Map<String, String> dataMap = Convert.jsonString2Map(data);
-        String username = dataMap.get("username");
-        String password = dataMap.get("password");
-        String remember = dataMap.get("remember");
+        Map<String, Object> dataMap = Convert.jsonString2Map(data);
+        String username = dataMap.get("username").toString();
+        String password = dataMap.get("password").toString();
+        String remember = dataMap.get("remember").toString();
         if (username != null && password != null) {
             Subject subject = SecurityUtils.getSubject();
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -47,7 +47,7 @@ public class AccountContoller {
                 subject.login(token);
                 System.out.println("是否登录：" + subject.isAuthenticated());
                 Map map = new HashMap();
-                map.put("token", token);
+                map.put("username", username);
                 return new Result(StatusCode.SUCCESS, map);
             } catch (UnknownAccountException e) {
                 e.printStackTrace();
