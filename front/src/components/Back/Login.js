@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../../styles/Login.scss';
+import { login } from '../../api';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -42,24 +43,17 @@ class Login extends Component {
             </div>
         );
     }
-    sign_in() {
+    async sign_in() {
         var data = {};
         data.username = this.state.username;
         data.password = this.state.password;
         data.remember = false;
-        fetch(
-            'http://localhost:8080/login', 
-            {
-                method: 'POST',
-                body: JSON.stringify(data)
-            }
-        )
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                this.props.history.push('/admin/main');
-            })
-            .catch(e => console.log(e));
+        let response = await login(data);
+        let j = await response.json();
+        if (j.code === 20000) {
+            this.props.signIn();
+            this.props.history.push('/admin');
+        }
         console.log('sign_in');
     }
     forgot() {

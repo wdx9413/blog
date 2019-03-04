@@ -5,7 +5,8 @@ export async function getArticleByIdAsync(id) {
     let response = await fetch(
         `${path}/article?id=${id}`, 
         {
-            method: 'GET'
+            method: 'GET',
+            credentials: "include"
         }
     );
     let data = await response.json();
@@ -29,7 +30,8 @@ export async function getArticlesByTypeAsync(type) {
     let response = await fetch(
         `${path}/articles?type=${type}`, 
         {
-            method: 'GET'
+            method: 'GET',
+            credentials: "include"
         }
     );
     let data = await response.json();
@@ -44,7 +46,8 @@ export async function deleteArticleById(id) {
         `${path}/article`, 
         {
             method: 'DELETE',
-            body: JSON.stringify({id})
+            body: JSON.stringify({id}),
+            credentials: "include"
         }
     );
     let ok = await response.ok;
@@ -58,7 +61,8 @@ export async function newArticle(article) {
         `${path}/article`, 
         {
             method: 'PUT',
-            body: JSON.stringify(article)
+            body: JSON.stringify(article),
+            credentials: "include"
         }
     );
     let ok = await response.ok;
@@ -72,7 +76,8 @@ export async function updateArticle(article) {
         `${path}/article`, 
         {
             method: 'POST',
-            body: JSON.stringify(article)
+            body: JSON.stringify(article),
+            credentials: "include"
         }
     );
     let ok = await response.ok;
@@ -81,15 +86,38 @@ export async function updateArticle(article) {
     }
 }
 
+export async function checkAuth() {
+    let response = await fetch(
+        `${path}/check`, 
+        {
+            method: 'GET',
+            credentials: "include"
+        }
+    );
+    let jsonData = await response.json();
+    return jsonData;
+}
 
 export async function login(data) {
     let response = await fetch(
         `${path}/login`, 
         {
             method: 'POST',
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            credentials: "include"
         }
     );
+    return response;
+}
+
+export async function logout() {
+    let response = await fetch(
+        `${path}/logout`,
+        {
+            method: 'POST',
+            credentials: "include"
+        }
+    )
     return response;
 }
 
@@ -98,7 +126,8 @@ export async function register(data) {
         `${path}/register`, 
         {
             method: 'PUT',
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            credentials: "include"
         }
     );
     return response;

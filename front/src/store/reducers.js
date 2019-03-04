@@ -1,4 +1,4 @@
-import { ADD_ARTICLE, DELETE_ARTICLE, CHANGE_ARTICLE, SET_ARTICLES, SET_FILTER, VisibilityFilters } from "./actions";
+import { ADD_ARTICLE, DELETE_ARTICLE, CHANGE_ARTICLE, SET_ARTICLES, LOGIN, LOGOUT } from "./actions";
 
 export const articles = (state = [], action) => {
     switch (action.type) {
@@ -22,10 +22,12 @@ export const articles = (state = [], action) => {
     }
 }
 
-export const visibilityFilter = (state = VisibilityFilters.SHOW_ALL, action) => {
+export const account = (state = {isAuthenticated: false}, action) => {
     switch (action.type) {
-        case SET_FILTER:
-            return action.filter;
+        case LOGIN:
+            return {isAuthenticated: true};
+        case LOGOUT:
+            return {isAuthenticated: false};
         default:
             return state;
     }

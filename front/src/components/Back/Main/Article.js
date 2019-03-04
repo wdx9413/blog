@@ -2,7 +2,7 @@ import React from 'react';
 // import '../../styles/Article.scss';
 // import author from '../../assets/author.png';
 import date from '../../../assets/date.png';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import { getArticleByIdAsync, deleteArticleById } from '../../../api';
 export default class Article extends React.Component {
     state = {
@@ -23,6 +23,7 @@ export default class Article extends React.Component {
     render() {
         return (
             <div className='article'>
+                <button onClick={() => this.props.history.push('/admin')}>back</button>
                 <button className='change'><Link to={{pathname: '/admin/edit', state: this.state.article}}>change</Link></button>
                 <button className='del' onClick={this.deleteArticle.bind(this)}>delete</button>
                 <h3 className='title'>{this.state.article.title}</h3>

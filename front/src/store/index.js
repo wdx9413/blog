@@ -1,10 +1,9 @@
 import {combineReducers, createStore} from 'redux';
 
-import {articles, visibilityFilter} from './reducers';
-
+import {articles, account} from './reducers';
 
 
 export default createStore(combineReducers({
     articles,
-    visibilityFilter
+    account
 }));
