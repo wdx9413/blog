@@ -10,18 +10,19 @@ export default class Create extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            editorState: props.location.state.content 
+            editorState: props.location.state && props.location.state.content
                 ? EditorState.createWithContent(
                     ContentState.createFromBlockArray(htmlToDraft(props.location.state.content).contentBlocks)
                 )
                 : EditorState.createEmpty(),
-            id: props.location.state.id ? props.location.state.id : ''
+            id: props.location.state && props.location.state.id ? props.location.state.id : ''
         }
     }
 
     render() {
         return (
             <div className='new-article'>
+                
                 <button className='push' onClick={this.createOrEditArticle.bind(this)}>发表文章</button>
                 <select defaultValue={this.props.location.state && this.props.location.state.type} className='type'>
                     <option value='1'>前端</option>
@@ -32,6 +33,7 @@ export default class Create extends React.Component {
                 </select>
                 <input className='title' placeholder='title' defaultValue={this.props.location.state && this.props.location.state.title}></input>
                 <Editor editorState={this.state.editorState} onEditorStateChange={this.change.bind(this)} placeholder='please input...' className='editor'></Editor>
+                <button className='back' onClick={() => this.props.history.push('/admin')}>back</button>
             </div>
         );
     }
@@ -55,7 +57,7 @@ export default class Create extends React.Component {
         var content = draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()));
         var userId = 'f9c2d35d463d45839f5393d6706023bfs';
         var article = {title, type, content, userId};
-        if (this.state.id === 0) {
+        if (this.state.id === '') {
             await newArticle(article);
         } else {
             article.id = this.state.id;

@@ -1,5 +1,6 @@
 package com.blog.config;
 
+import com.blog.util.MySessionListener;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -7,6 +8,7 @@ import org.apache.shiro.codec.Base64;
 import org.apache.shiro.mgt.RememberMeManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.realm.Realm;
+import org.apache.shiro.session.SessionListener;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -14,15 +16,17 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.Cookie;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @auther TyCoding
@@ -38,6 +42,8 @@ public class ShiroConfig {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(userRealm(hashedCredentialsMatcher()));
         securityManager.setRememberMeManager(rememberMeManager());
+        securityManager.setSessionManager(sessionManager());
+        securityManager.setCacheManager(cacheManager());
         return securityManager;
     }
 
@@ -81,6 +87,13 @@ public class ShiroConfig {
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
     }
+    @Bean
+    @ConditionalOnMissingBean
+    public DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator defaultAAP = new DefaultAdvisorAutoProxyCreator();
+        defaultAAP.setProxyTargetClass(true);
+        return defaultAAP;
+    }
 
     @Bean
     public CacheManager cacheManager() {
@@ -95,10 +108,18 @@ public class ShiroConfig {
     @Bean
     public DefaultWebSessionManager sessionManager(){
         DefaultWebSessionManager defaultWebSessionManager = new DefaultWebSessionManager();
-        defaultWebSessionManager.setGlobalSessionTimeout(1800000);
+        defaultWebSessionManager.setGlobalSessionTimeout(18000000);
         defaultWebSessionManager.setDeleteInvalidSessions(true);
         defaultWebSessionManager.setSessionValidationSchedulerEnabled(true);
+        defaultWebSessionManager.setSessionValidationInterval(1800000);
         defaultWebSessionManager.setSessionDAO(sessionDAO());
+        defaultWebSessionManager.setSessionIdUrlRewritingEnabled(true);
+
+        Collection<SessionListener> listeners = new ArrayList<SessionListener>();
+        listeners.add(new MySessionListener());
+        defaultWebSessionManager.setSessionListeners(listeners);
+
+
         return defaultWebSessionManager;
     }
 
@@ -116,27 +137,11 @@ public class ShiroConfig {
         shiroFilterFactoryBean.setLoginUrl("/login");
 
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-//        filterChainDefinitionMap.put("/admin/css/**", "anon");
-//        filterChainDefinitionMap.put("/admin/img/**", "anon");
-//        filterChainDefinitionMap.put("/admin/js/**", "anon");
-//        filterChainDefinitionMap.put("/lib/**", "anon");
-//        filterChainDefinitionMap.put("/public/admin/**", "anon");
-//        filterChainDefinitionMap.put("/public/site/**", "anon");
-//        filterChainDefinitionMap.put("/site/css/**", "anon");
-//        filterChainDefinitionMap.put("/site/js/**", "anon");
-//        filterChainDefinitionMap.put("/site/img/**", "anon");
-//
-//        filterChainDefinitionMap.put("/", "anon");
-//        filterChainDefinitionMap.put("/site", "anon");
-//        filterChainDefinitionMap.put("/site/**", "anon");
-//
-//        filterChainDefinitionMap.put("/logout", "logout");
-
+        filterChainDefinitionMap.put("/articles", "anon");
+        filterChainDefinitionMap.put("/article", "anon");
         filterChainDefinitionMap.put("/login", "anon");
-        filterChainDefinitionMap.put("/register", "anon");
+        filterChainDefinitionMap.put("/register", "authc");
         filterChainDefinitionMap.put("/testUser", "anon");
-        filterChainDefinitionMap.put("/admin/login", "anon");
-
         filterChainDefinitionMap.put("/admin/**", "authc");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
