@@ -36,7 +36,7 @@ class Login extends Component {
                     <input className='login-input' type='password' value={this.state.password} placeholder='Password' onChange={this.changePassword} />
                     <div className='sign-in-btn' onClick={this.sign_in}>SIGN IN</div>
                     <div className='other'>
-                        <span className='sign-up-btn'  onClick={this.sign_up}>Sign up</span>
+                        <span className='sign-up-btn'  onClick={() => {this.props.history.push('/admin/signup');}}>Sign up</span>
                         <span className='forgot-btn'  onClick={this.forgot}>Forgot Password</span>
                     </div>
                 </form>
@@ -48,16 +48,14 @@ class Login extends Component {
         data.username = this.state.username;
         data.password = this.state.password;
         data.remember = false;
-        let response = await login(data);
-        let j = await response.json();
-        if (j.code === 20000) {
-            this.props.signIn();
-            this.props.history.push('/admin');
-        }
+        await login(data);
+        this.props.signIn();
+        this.props.history.push('/admin');
         console.log('sign_in');
     }
     forgot() {
         
     }
+    
 }
 export default Login;

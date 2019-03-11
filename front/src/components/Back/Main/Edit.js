@@ -55,8 +55,7 @@ export default class Create extends React.Component {
         //
         var type = children[1].value;
         var content = draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()));
-        var userId = 'f9c2d35d463d45839f5393d6706023bfs';
-        var article = {title, type, content, userId};
+        var article = {title, type, content};
         if (this.state.id === '') {
             await newArticle(article);
         } else {

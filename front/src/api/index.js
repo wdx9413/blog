@@ -9,23 +9,13 @@ export async function getArticleByIdAsync(id) {
             credentials: "include"
         }
     );
-    let data = await response.json();
-    data.date = Utils.formatJavaDateString(data.date);
-    return data;
+    let jsonObj = await response.json();
+    if (jsonObj.code === 20000) {
+        jsonObj.data.date = Utils.formatJavaDateString(jsonObj.data.date);
+        return jsonObj.data;
+    }
+    return {};
 }
-// export async function getArticlesAsync() {
-//     let response = await fetch(
-//         `${path}/articles`, 
-//         {
-//             method: 'GET'
-//         }
-//     );
-//     let data = response.json();
-//     data.forEach(element => {
-//         element.date = Utils.formatJavaDateString(element.date);
-//     });
-//     return data;
-// }
 export async function getArticlesByTypeAsync(type) {
     let response = await fetch(
         `${path}/articles?type=${type}`, 
@@ -34,11 +24,14 @@ export async function getArticlesByTypeAsync(type) {
             credentials: "include"
         }
     );
-    let data = await response.json();
-    data.forEach(element => {
-        element.date = Utils.formatJavaDateString(element.date);
-    });
-    return data;
+    let jsonObj = await response.json();
+    if (jsonObj.code === 20000) {
+        jsonObj.data.forEach(element => {
+            element.date = Utils.formatJavaDateString(element.date);
+        });
+        return jsonObj.data;
+    }
+    return [];
 }
 
 export async function deleteArticleById(id) {
@@ -50,10 +43,13 @@ export async function deleteArticleById(id) {
             credentials: "include"
         }
     );
-    let ok = await response.ok;
-    if (ok) {
+    let jsonObj = await response.json();
+    if (jsonObj.code === 20000) {
         console.log('delete article success');
+        return;
     }
+    console.error("delete article error");
+
 }
 
 export async function newArticle(article) {
@@ -65,10 +61,13 @@ export async function newArticle(article) {
             credentials: "include"
         }
     );
-    let ok = await response.ok;
-    if (ok) {
+    let jsonObj = await response.json();
+    if (jsonObj.code === 20000) {
         console.log('new article success');
+        return;
     }
+    console.error("new article error");
+
 }
 
 export async function updateArticle(article) {
@@ -80,10 +79,13 @@ export async function updateArticle(article) {
             credentials: "include"
         }
     );
-    let ok = await response.ok;
-    if (ok) {
+    let jsonObj = await response.json();
+    if (jsonObj.code === 20000) {
         console.log('update article success');
+        return;
     }
+    console.error("update article error");
+
 }
 
 export async function checkAuth() {
@@ -94,8 +96,11 @@ export async function checkAuth() {
             credentials: "include"
         }
     );
-    let jsonData = await response.json();
-    return jsonData;
+    let jsonObj = await response.json();
+    if (jsonObj.code === 20000) {
+        return jsonObj.data;
+    }
+    return false;
 }
 
 export async function login(data) {
@@ -107,7 +112,12 @@ export async function login(data) {
             credentials: "include"
         }
     );
-    return response;
+    let jsonObj = await response.json();
+    if (jsonObj.code === 20000) {
+        return jsonObj.data;
+    }
+    console.error(jsonObj.data);
+
 }
 
 export async function logout() {
@@ -118,7 +128,11 @@ export async function logout() {
             credentials: "include"
         }
     )
-    return response;
+    let jsonObj = await response.json();
+    if (jsonObj.code === 20000) {
+        return jsonObj.data;
+    }
+    console.error("logout error");
 }
 
 export async function register(data) {
@@ -130,6 +144,25 @@ export async function register(data) {
             credentials: "include"
         }
     );
-    return response;
+    let jsonObj = await response.json()
+    if (jsonObj.code === 20000) {
+        return jsonObj.data;
+    }
+    console.error("register error");
+}
+
+export async function testUser(username) {
+    let response = await fetch(
+        `${path}/testUser`, 
+        {
+            method: 'POST',
+            body: username
+        }
+    );
+    let jsonObj = await response.json();
+    if (jsonObj.code === 20000) {
+        return jsonObj.data;
+    }
+    return true;
 }
 
