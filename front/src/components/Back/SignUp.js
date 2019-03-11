@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../../styles/SignUp.scss';
+import { testUser, checkAuth } from '../../api';
 class SignUp extends Component {
     constructor(props) {
         super(props);
@@ -17,6 +18,15 @@ class SignUp extends Component {
         // this.changeVerify = this.changeVerify.bind(this);
         // this.getVerify = this.getVerify.bind(this);
         this.submitData = this.submitData.bind(this);
+    }
+    componentWillMount() {
+        // checkAuth().then((flag) => {
+        //     if (flag) {
+        //         console.log(flag);
+        //         this.props.history.push('/admin');
+        //     }
+        // });
+        
     }
     render() {
         return (
@@ -48,29 +58,17 @@ class SignUp extends Component {
         )
     }
     
-    testUsername(event) {
+    async testUsername(event) {
         if (!(/^[A-Za-z]\w{4,}$/g).test(this.state.username)) {
             console.log('no');
             return;
         }
-        fetch(
-            'http://localhost:8080/testUser', 
-            {
-                method: 'POST',
-                body: this.state.username
-            }
-        )
-        .then(response => { return response.json(); })
-        .then((bool) => {
-            if (bool) {
-                console.log('有人');
-            } else {
-                this.setState(
-                    Object.assign({}, this.state, {rightUsername: true})
-                    );
-            }
-        })
-        .catch(error => console.log(error));
+        let bool = await testUser(this.state.username)
+        if (bool) {
+            console.log('有人');
+        } else {
+            this.setState(Object.assign({}, this.state, {rightUsername: true}));
+        }
     }
     changeUsername(event) {
         this.setState(
@@ -105,8 +103,9 @@ class SignUp extends Component {
                     body: JSON.stringify(data)
                 }
             )
-            .then((response) => {
-                console.log('success')
+            .then((d) => {
+                console.log('success');
+                this.props.history.push('/admin')
             })
             .catch(error => console.log(error));
         }

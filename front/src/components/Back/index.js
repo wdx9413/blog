@@ -9,7 +9,8 @@ export default class Back extends React.Component {
         return (
             <Switch>
                 <Route path='/admin/login' component={Login}></Route>
-                <PrivateRoute path='/admin/signup' component={SignUp}></PrivateRoute>
+                {/* <PrivateRoute path='/admin/signup' component={SignUp}></PrivateRoute> */}
+                <Route path='/admin/signup' component={SignUp}></Route>
                 <PrivateRoute path='/admin' component={Main}></PrivateRoute>
             </Switch>
         );

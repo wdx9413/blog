@@ -29,10 +29,7 @@ public class AccountController {
     @GetMapping("/check")
     public Result checkAuth() {
         Subject subject = SecurityUtils.getSubject();
-        if (subject.getPrincipal() != null) {
-            return new Result(StatusCode.SUCCESS, true);
-        }
-        return new Result(StatusCode.SUCCESS, false);
+        return new Result(StatusCode.SUCCESS, subject.getPrincipal() != null);
     }
     @PostMapping("/login")
     public Result login(@RequestBody String data) {
@@ -70,7 +67,7 @@ public class AccountController {
     }
 
     @PutMapping(value = "/register")
-    void register(@RequestBody String data) {
+    Result register(@RequestBody String data) {
         Map<String, String> map = Convert.jsonString2Map(data);
         User user = new User();
         user.setId(UUID.get());
@@ -79,19 +76,20 @@ public class AccountController {
         user.setPhone(map.get("phone"));
 //        user.setSalt(UUID.get());
         passwordHelper.encryptPassword(user);
-        System.out.println(user);
         userService.insertUser(user);
+        return new Result(StatusCode.SUCCESS, "");
     }
 
     @PostMapping("/logout")
-    void logout() {
+    Result logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
         System.out.println("logout");
+        return new Result(StatusCode.SUCCESS, "");
     }
 
     @PostMapping("/testUser")
-    boolean testUser(@RequestBody String username) {
-        return userService.findByName(username) != null;
+    Result testUser(@RequestBody String username) {
+        return new Result(StatusCode.SUCCESS, userService.findByName(username) != null);
     }
 }
