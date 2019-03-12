@@ -27,7 +27,7 @@ public class ArticleController {
     UserService userService;
 
     @GetMapping("/articles")
-    Result getArticleList(Integer type, HttpServletRequest request) {
+    Result getArticleList(Integer type) {
         switch (type) {
             case 0:
                 return new Result(StatusCode.SUCCESS, articleService.getArticleList());
@@ -35,6 +35,7 @@ public class ArticleController {
                 return new Result(StatusCode.SUCCESS, articleService.getArticleListByType(type));
         }
     }
+
 
     @GetMapping("/article")
     Result getArticle(@RequestParam("id") String id) {
@@ -44,8 +45,8 @@ public class ArticleController {
     @RequiresAuthentication
     Result insertArticle(@RequestBody String data) {
         Map<String, Object> map = Convert.jsonString2Map(data);
-        String username = (String) SecurityUtils.getSubject().getPrincipal();
-        String userId = userService.findByName(username).getId();
+        User user = (User) SecurityUtils.getSubject().getSession().getAttribute("user");
+        String userId = user.getId();
         Article article = new Article();
         article.setId(UUID.get());
         article.setTitle(map.get("title").toString());

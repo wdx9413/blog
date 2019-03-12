@@ -2,9 +2,10 @@ package com.blog.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Article {
+public class Article implements Serializable {
     private String id;
     private String title;
     private String content;

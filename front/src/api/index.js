@@ -1,5 +1,5 @@
 import Utils from "../utils";
-const path = 'http://localhost:8080';
+const path = 'http://39.97.166.150:8080';
 
 export async function getArticleByIdAsync(id) {
     let response = await fetch(

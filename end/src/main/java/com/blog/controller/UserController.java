@@ -16,10 +16,10 @@ public class UserController {
 //    @Autowired
 //    private PasswordHelper passwordHelper;
 
-    @GetMapping("/users")
-    Result getUserList() {
-        return new Result(StatusCode.SUCCESS, userService.getUserList());
-    }
+//    @GetMapping("/users")
+//    Result getUserList() {
+//        return new Result(StatusCode.SUCCESS, userService.getUserList());
+//    }
 
 
 }

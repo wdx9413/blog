@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../../styles/SignUp.scss';
-import { testUser, checkAuth } from '../../api';
+import { testUser, checkAuth, register } from '../../api';
 class SignUp extends Component {
     constructor(props) {
         super(props);
@@ -96,13 +96,7 @@ class SignUp extends Component {
     submitData() {
         if (this.state.rightUsername) {
             var data = {username: this.state.username, password: this.state.password};
-            fetch(
-                'http://localhost:8080/register', 
-                {
-                    method: 'PUT',
-                    body: JSON.stringify(data)
-                }
-            )
+            register(data)
             .then((d) => {
                 console.log('success');
                 this.props.history.push('/admin')

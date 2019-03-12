@@ -24,7 +24,7 @@ public class ArticleService {
     @Transactional
     public void insertArticleByUserId(String userId, Article article) {
         articleMapper.insertArticle(article);
-        userArticleMapper.insert(userId, article.getId());
+//        userArticleMapper.insert(userId, article.getId());
     }
 
     public Article getArticleById(String id) {

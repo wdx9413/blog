@@ -1,6 +1,8 @@
 package com.blog.entity;
 
-public class Result {
+import java.io.Serializable;
+
+public class Result implements Serializable {
     private Integer code;
     private Object data;
 
