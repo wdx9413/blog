@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../../styles/Login.scss';
-import { login } from '../../api';
+import { login } from '../../api/Account';
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -35,10 +35,10 @@ class Login extends Component {
                     <input className='login-input' value={this.state.username} placeholder='Username' onChange={this.changeUsername} />
                     <input className='login-input' type='password' value={this.state.password} placeholder='Password' onChange={this.changePassword} />
                     <div className='sign-in-btn' onClick={this.sign_in}>SIGN IN</div>
-                    <div className='other'>
+                    {/* <div className='other'>
                         <span className='sign-up-btn'  onClick={() => {this.props.history.push('/admin/signup');}}>Sign up</span>
                         <span className='forgot-btn'  onClick={this.forgot}>Forgot Password</span>
-                    </div>
+                    </div> */}
                 </form>
             </div>
         );

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
-import PrivateRoute from '../../components/Back/PrivateRoute';
+import PrivateRoute from '../../components/back/PrivateRoute';
 import { login } from '../../store/actions';
 
 const mapStateToProps = state => ({

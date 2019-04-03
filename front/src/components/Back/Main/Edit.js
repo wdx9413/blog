@@ -4,8 +4,9 @@ import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import '../../../styles/NewArticle.scss'
-import { newArticle, updateArticle } from '../../../api';
+import '../../../styles/Back/Edit.scss'
+import { newArticle, updateArticle } from '../../../api/Article';
+import DraftEditorConfig from '../../../config/DraftEditorConfig';
 export default class Create extends React.Component {
     constructor(props) {
         super(props);
@@ -21,19 +22,27 @@ export default class Create extends React.Component {
 
     render() {
         return (
-            <div className='new-article'>
-                
-                <button className='push' onClick={this.createOrEditArticle.bind(this)}>发表文章</button>
-                <select defaultValue={this.props.location.state && this.props.location.state.type} className='type'>
-                    <option value='1'>前端</option>
-                    <option value='2'>后端</option>
-                    <option value='3'>数据库</option>
-                    <option value='4'>系统</option>
-                    <option value='5'>其他</option>
-                </select>
-                <input className='title' placeholder='title' defaultValue={this.props.location.state && this.props.location.state.title}></input>
-                <Editor editorState={this.state.editorState} onEditorStateChange={this.change.bind(this)} placeholder='please input...' className='editor'></Editor>
-                <button className='back' onClick={() => this.props.history.push('/admin')}>back</button>
+            <div className='edit'>
+                <div className='edit-btn'>
+                    <button className='push' onClick={this.createOrEditArticle.bind(this)}>发表</button>
+                    <button className='back' onClick={() => this.props.history.push('/admin')}>首页</button>
+                </div>
+                <div className='edit-content'>
+                    <select defaultValue={this.props.location.state && this.props.location.state.type} className='type'>
+                        <option value='1'>前端</option>
+                        <option value='2'>后端</option>
+                        <option value='3'>数据库</option>
+                        <option value='4'>系统</option>
+                        <option value='5'>其他</option>
+                    </select>
+                    <input className='title' placeholder='标题' defaultValue={this.props.location.state && this.props.location.state.title}></input>
+                    <Editor 
+                        editorState={this.state.editorState} 
+                        onEditorStateChange={this.change.bind(this)} 
+                        className='editor'
+                        toolbar={DraftEditorConfig}
+                    />
+                </div>
             </div>
         );
     }
@@ -55,7 +64,7 @@ export default class Create extends React.Component {
         //
         var type = children[1].value;
         var content = draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()));
-        var article = {title, type, content};
+        var article = { title, type, content };
         if (this.state.id === '') {
             await newArticle(article);
         } else {

@@ -1,0 +1,59 @@
+.archive {
+    text-align: left;
+    width: 60%;
+    min-height: 600px;
+    background-color: white;
+    margin: 20px auto;
+    box-shadow: 0 0 1px rgba($color: #000000, $alpha: 0.1);
+    .archive-content {
+        width: 90%;
+        margin: 0 auto;
+        padding-top: 20px;
+        ul {
+            color: #999999;
+            padding-top: 20px;
+        }
+        li {
+            position: relative;
+            height: 28px;
+            .date {
+                background-color: white;
+                padding-right: 40px;
+                position: relative;
+                &::after {
+                    position: absolute;
+                    content: "";
+                    top: -10px;
+                    right: 20px;
+                    width: 2px;
+                    height: 36px;
+                    background-color: #aaaaaa;
+                }
+            }
+            .title {
+                position: relative;
+                color: #395692;
+                font-weight: bold;
+                &::before {
+                    cursor: default;
+                    box-sizing: border-box;
+                    position: absolute;
+                    content: "";
+                    left: -28px;
+                    top: 3px;
+                    width: 14px;
+                    height: 14px;
+                    background-color: white;
+                    border-radius: 7px;
+                    border: 2px solid #aaaaaa;
+                }
+            }
+            &:hover {
+                .title::before {
+                    background-color: #000000;
+                }
+            }
+        }
+                
+    }
+}

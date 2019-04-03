@@ -1,12 +1,11 @@
 import {connect} from 'react-redux';
-import { getArticlesByTypeAsync } from '../api';
 import { setArticles } from '../store/actions';
-import Main from '../components/Back/Main';
-import {withRouter} from 'react-router-dom';
+import { getArticlesByTypeAsync } from '../api/Article';
+import Main from '../components/main';
 const mapDispatchToProps = dispatch => ({
-    onChange: async (type) => {
-        let data = await getArticlesByTypeAsync(type);
-        dispatch(setArticles(data));
+    setDefaultArticles: async () => {
+        let articles = await getArticlesByTypeAsync(0);
+        dispatch(setArticles(articles));
     }
 })
-export default withRouter(connect(null, mapDispatchToProps)(Main));
+export default connect(null, mapDispatchToProps)(Main);

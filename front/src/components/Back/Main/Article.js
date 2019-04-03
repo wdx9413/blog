@@ -3,7 +3,7 @@ import React from 'react';
 // import author from '../../assets/author.png';
 import date from '../../../assets/date.png';
 import {Link} from 'react-router-dom';
-import { getArticleByIdAsync, deleteArticleById } from '../../../api';
+import { getArticleByIdAsync, deleteArticleById } from '../../../api/Article';
 export default class Article extends React.Component {
     state = {
         article : {

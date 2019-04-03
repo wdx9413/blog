@@ -1,0 +1,44 @@
+.edit {
+    width: 100%;
+    text-align: center;
+    vertical-align: middle;
+    min-width: 960px;
+    .edit-btn {
+        width: 100%;
+        .back {
+            float: left;
+            margin: 20px 0 0 50px;
+        }
+        .push {
+            float: right;
+            margin: 20px 50px 0 0;
+        }
+    }
+    .edit-content {
+        width: 640px;
+        margin: 0 auto;
+        border-right: 1px solid #F1F1F1;
+        border-left: 1px solid #F1F1F1;
+        box-sizing: content-box;
+        -moz-box-sizing: content-box; /* Firefox */
+        -webkit-box-sizing: content-box; /* Safari */
+        height: 800px;
+        .title {
+            width: 80%;
+            font-size: 32px;
+            outline-width: 0;
+            border-width: 0 0 1px;
+            padding: 20px 0;
+            margin: 20px auto;
+            outline: 0px red solid;
+        }
+        .type {
+            float: right;
+            margin-top: 30px;
+        }
+    }
+}
+.rdw-image-modal-upload-option-label {
+    overflow: hidden;
+    justify-content: left;
+}

@@ -3,6 +3,7 @@
     background-color: white;
     margin: 0 auto;
     height: auto;
+    text-align: center;
     .title {
         padding-top: 20px;
     }
@@ -14,9 +15,13 @@
         .date {
             margin: 0 5px;
         }
+        padding-bottom: 20px;
+        border-bottom: 1px solid #efefef;
     }
     .content {
         text-align: left;
-        margin: 50px 20px 0;
+        margin: 60px 20px 0;
+        min-height: 600px;
     }
+    
 }
