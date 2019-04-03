@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../../styles/SignUp.scss';
-import { testUser, checkAuth, register } from '../../api';
+import { testUser, register } from '../../api/Account';
 class SignUp extends Component {
     constructor(props) {
         super(props);
@@ -18,15 +18,6 @@ class SignUp extends Component {
         // this.changeVerify = this.changeVerify.bind(this);
         // this.getVerify = this.getVerify.bind(this);
         this.submitData = this.submitData.bind(this);
-    }
-    componentWillMount() {
-        // checkAuth().then((flag) => {
-        //     if (flag) {
-        //         console.log(flag);
-        //         this.props.history.push('/admin');
-        //     }
-        // });
-        
     }
     render() {
         return (

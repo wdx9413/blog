@@ -1,26 +1,80 @@
 .head {
-    background-color: rgb(155, 208, 233);
-    height: 50px;
+    background-color: rgb(57, 86, 146);
+    height: 60px;
     vertical-align: middle;
-    line-height: 50px;
-    position: fixed;
+    line-height: 60px;
     width: 100%;
-    top: 0;
+    color: #ffffff;
+    border-bottom: 1px solid #ebebeb;
+    position: relative;
     .head-icon {
-        margin-right: 100px;
         height: 30px;
-        vertical-align: middle;
-        margin-left: -200px;
     }
+    .head-title {
+        float: left;
+        margin-left: 20px;
+        font-size: 20px;
+    }
+    
     .head-list {
+        position: absolute;
         list-style-type: none;
-        display: inline-block;
-        margin: 0;
+        left: 60px;
         line-height: 15px;
         vertical-align: middle;
+        .head-list-unit {
+            float: left;
+            width: 60px;
+            line-height: 60px;
+            margin: 0;
+            .link{
+                color: white;
+                &:hover{
+                    color: #bebebe;
+                }
+            } 
+        }
+        // .special {
+        //     width: 160px;
+        //     font-size: 22px;
+        //     margin-right: 50px;
+        //     text-decoration: blink;
+        //     font-family: Arial, Helvetica, sans-serif;
+        // }
     }
-    .head-list-1 {
-        float: left;
-        width: 60px;
+    .head-search {
+        margin: 10px 20px;
+        float: right;
+        vertical-align: middle;
+        height: auto;
+        line-height: 32px;
+        border-bottom: 1px solid #b8b8b8;
+        .search-input {    
+            color: #ffffff;
+            padding: 0;
+            margin: 0 10px;
+            width: 80px;
+            outline: none;
+            border: 0;
+            height: 24px;
+            background-color: rgb(57, 86, 146);
+            &:focus {
+                height: 40px;
+            }
+        }
+        .search-btn {
+            height: 20px;
+            margin-right: 10px;
+            background-color: rgb(57, 86, 146);
+            border: 0;
+            color: #ffffff;
+            &:focus {
+                outline: 0;
+            }
+            &:hover {
+                color: #b8b8b8;
+            }
+        }
     }
+    
 }

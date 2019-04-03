@@ -1,11 +1,11 @@
 import React from 'react';
-import ItemList from '../../../containers/Back/ItemList';
-import '../../../styles/Main.scss';
+import ItemList from '../../../containers/back/ItemList';
+import '../../../styles/Back/Main.scss';
 import {Switch, Route, Link} from 'react-router-dom';
 import Article from './Article';
 import Edit from './Edit';
-import NotMatch from '../../NotMatch';
-import { logout } from '../../../api';
+import NotMatch from '../../common/NotMatch';
+import { logout } from '../../../api/Account';
 export default class Main extends React.Component {
     componentWillMount() {
         this.props.onChange(0);
@@ -17,7 +17,7 @@ export default class Main extends React.Component {
         return (
             <Switch>
                 <Route exact path='/admin/'>
-                    <div className='main'>
+                    <div className='back-main'>
                         {/* <span>{this.props.username}</span> */}
                         
                         <button onClick={() => {logout(); this.props.history.push('/admin/login')}}>logout</button>

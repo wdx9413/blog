@@ -1,8 +1,8 @@
 import {connect} from 'react-redux';
-import {getArticlesByTypeAsync} from '../api';
+import {getArticlesByTypeAsync} from '../api/Article';
 import { setArticles } from '../store/actions';
-import CustomButton from '../components/Home/CustomButton';
 import {withRouter} from 'react-router-dom'
+import CustomButton from '../components/main/CustomButton';
 const mapDispatchToProps = (dispatch, ownProps) => ({
     onClick: async () => {
         let articles = await getArticlesByTypeAsync(ownProps.type);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { checkAuth } from '../../api';
+import { checkAuth } from '../../api/Account';
 
 export default class PrivateRoute extends React.Component {
     componentWillMount() {

@@ -1,12 +1,13 @@
 .item {
     text-align: left;
-    // height: 200px;
     border-bottom: 1px solid rgb(224, 224, 224);
-    width: 100%;
+    width: 80%;
+    margin: 0 auto;
     .title {
         font-weight: bold;
         font-size: 18px;
         margin: 0;
+        color: #3d3d3d;
     }
     .description {
         font-size: 14px;
@@ -21,6 +22,5 @@
     .date {
         font-size: 14px;
         float: right;
-        margin-right: 50px;
     }
 }
