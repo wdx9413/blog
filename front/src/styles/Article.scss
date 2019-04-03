@@ -1,0 +1,27 @@
+.article {
+    width: 60%;
+    background-color: white;
+    margin: 0 auto;
+    height: auto;
+    text-align: center;
+    .title {
+        padding-top: 20px;
+    }
+    .info {
+        margin-left: 20px;
+        .author {
+            margin: 0 5px;
+        }
+        .date {
+            margin: 0 5px;
+        }
+        padding-bottom: 20px;
+        border-bottom: 1px solid #efefef;
+    }
+    .content {
+        text-align: left;
+        margin: 60px 20px 0;
+        min-height: 600px;
+    }
+    
+}
