@@ -31,7 +31,7 @@
         padding-top: 20px;
         text-align: left;
         .content-title {
-            margin-left: 60px;
+            margin-left: 50px;
             display: inline-block;
             width: 100px;
             border-bottom: 3px solid rgb(57, 86, 146);
@@ -39,15 +39,23 @@
         .item-list {
             width: 90%;
             margin-top: 30px;
+            margin: 30px auto 0;
             .item {
                 margin: 10px auto;
+                width: 90%;
                 .item-date {
                     color: #000000;
-                    margin-right: 40px;
+                    display: inline-block;
+                    height: 20px;
                 }
                 .item-title {
                     color: rgb(57, 86, 146);
                     font-weight: bold;
+                    height: 20px;
+                    overflow: hidden;
+                    width: 80%;
+                    display: inline-block;
+                    text-overflow: ellipsis;
                 }
             }
         }

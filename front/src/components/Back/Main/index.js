@@ -1,18 +1,16 @@
 import React from 'react';
-import ItemList from '../../../containers/back/ItemList';
 import '../../../styles/Back/Main.scss';
 import {Switch, Route, Link} from 'react-router-dom';
-import Article from './Article';
-import Edit from './Edit';
-import NotMatch from '../../common/NotMatch';
 import { logout } from '../../../api/Account';
+import Loadable from "react-loadable";
+import CustomLoading from '../../common/CustomLoading';
+import NotMatch from '../../common/NotMatch';
+
+const ItemList = Loadable({loader: () => import('../../../containers/back/ItemList'), loading: CustomLoading});
+const Article = Loadable({loader: () => import('./Article'), loading: CustomLoading});
+const Edit = Loadable({loader: () => import('./Edit'), loading: CustomLoading});
+
 export default class Main extends React.Component {
-    componentWillMount() {
-        this.props.onChange(0);
-    }
-    componentWillReceiveProps() {
-        this.props.onChange(0);
-    }
     render() {
         return (
             <Switch>

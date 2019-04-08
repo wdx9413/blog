@@ -1,9 +1,13 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import Login from '../../containers/back/Login';
-import SignUp from './SignUp';
-import Main from '../../containers/back/Main';
-import PrivateRoute from '../../containers/back/PrivateRoute';
+import Loadable from "react-loadable";
+import CustomLoading from '../common/CustomLoading'
+
+const Login = Loadable({loader: () => import('../../containers/back/Login'), loading: CustomLoading})
+const SignUp = Loadable({loader: () => import('./SignUp'), loading: CustomLoading})
+const Main = Loadable({loader: () => import('../../containers/back/Main'), loading: CustomLoading})
+const PrivateRoute = Loadable({loader: () => import('../../containers/back/PrivateRoute'), loading: CustomLoading})
+
 export default class Back extends React.Component {
     render() {
         return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import Item from '../ArticleItem';
+import Item from './ArticleItem';
 import '../../../styles/Main.scss';
 import RecommendConfig from '../../../config/RecommendConfig'
 import { getRecentCommentListAsync } from '../../../api/Comment';
@@ -52,18 +52,6 @@ export default class Home extends React.Component {
                 </div>
 
                 <div className='main-content'>
-                    {/* <ul className='main-list'>
-                        {
-                            ItemListConfig.map(({type, name}, index) => {
-                                return (
-                                    <li key={index} className={'main-list-unit' +( type === this.state.type ? ' selected' : '')} onClick={this.changeType.bind(this, type)}>
-                                        <CustomButton type={type}>{name}</CustomButton>
-                                    </li>
-                                );
-                            })
-                        }
-                    </ul> */}
-
                     <ul className='item-list'>
                         {
                             this.state.articleList.map(article =>

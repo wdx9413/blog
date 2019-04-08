@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import '../styles/App.scss';
-import Home from '../containers/Main';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Back from './back';
+import Loadable from 'react-loadable';
+import CustomLoading from './common/CustomLoading';
+const Home = Loadable({loader: () => import('../containers/Main'), loading: CustomLoading});
+const Back = Loadable({loader: () => import('./back'), loading: CustomLoading})
 class App extends Component {
   render() {
     return (

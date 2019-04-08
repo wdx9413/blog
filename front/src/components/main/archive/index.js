@@ -22,7 +22,7 @@ class Archive extends Component {
                             this.state.articleList.map(article =>
                                 <li key={article.id}>
                                     <span className='date'>{article.date.substring(0,10)}</span>
-                                    <Link className='title' to={`/article/${article.id}`}>{article.title}</Link>
+                                    <span className='title'><Link className='link' to={`/article/${article.id}`}>{article.title}</Link></span>
                                 </li>
                             )
                         }

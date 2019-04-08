@@ -1,8 +1,13 @@
 import React from 'react';
 import '../../../styles/Comment.scss'
-import CommentItem from './CommentItem';
 import { insertComment, getCommentsByArticleIdAsync, getReplysByCommentIdAsync } from '../../../api/Comment';
 import { insertReply } from '../../../api/Reply';
+import Loadable from 'react-loadable'
+import CustomLoading from '../../common/CustomLoading';
+
+const CommentItem = Loadable({loader: () => import('./CommentItem'), loading: CustomLoading})
+
+
 class Comment extends React.Component {
     state = {
         hasComment: true,

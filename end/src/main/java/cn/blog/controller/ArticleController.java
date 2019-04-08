@@ -29,6 +29,7 @@ public class ArticleController {
 
     @GetMapping("/articles/{type}")
     Result getArticleListByType(@PathVariable Integer type) {
+
         return new Result(StatusCode.SUCCESS, articleService.getArticleListByType(type));
     }
 

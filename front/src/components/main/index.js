@@ -1,15 +1,19 @@
 import React from 'react';
-import Home from './home';
 import '../../styles/Home.scss';
-import Head from './Head';
-import Foot from './Foot';
-import Article from './Article';
 import {Route, Switch} from 'react-router-dom';
-import NotMatch from '../common/NotMatch';
-import About from './about';
-import Message from './message';
-import Catergory from '../../containers/category';
-import Archive from './archive';
+import Loadable from 'react-loadable';
+import CustomLoading from '../common/CustomLoading';
+
+const Head = Loadable({loader: () => import('./Head'), loading: CustomLoading});
+const Foot = Loadable({loader: () => import('./Foot'), loading: CustomLoading});
+const Home = Loadable({loader: () => import('./home'), loading: CustomLoading});
+const About = Loadable({loader: () => import('./about'), loading: CustomLoading});
+const Message = Loadable({loader: () => import('./message'), loading: CustomLoading});
+const Archive = Loadable({loader: () => import('./archive'), loading: CustomLoading});
+const Catergory = Loadable({loader: () => import('../../containers/category'), loading: CustomLoading});
+const Article = Loadable({loader: () => import('./Article'), loading: CustomLoading});
+const NotMatch = Loadable({loader: () => import('../common/NotMatch'), loading: CustomLoading});
+
 export default class Main extends React.Component{
     
     render() {
@@ -18,12 +22,12 @@ export default class Main extends React.Component{
                 <Head></Head>
                 <div className='home'>
                     <Switch>
-                        <Route path='/article/:id' component={Article}></Route>
                         <Route exact path='/' component={Home}></Route>
                         <Route path='/archive' component={Archive}></Route>
                         <Route path='/category' component={Catergory}></Route>
                         <Route path='/about' component={About}></Route>
                         <Route path='/message' component={Message}></Route>
+                        <Route path='/article/:id' component={Article}></Route>
                         <Route component={NotMatch}></Route>
                     </Switch>
                 </div>

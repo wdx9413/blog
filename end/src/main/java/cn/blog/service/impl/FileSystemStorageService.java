@@ -2,6 +2,7 @@ package cn.blog.service.impl;
 
 import cn.blog.service.StorageService;
 import cn.blog.util.UUID;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,10 @@ import java.util.stream.Stream;
 
 @Service
 public class FileSystemStorageService implements StorageService {
-    private final Path rootLocation = Paths.get("images");
+
+
+    private static final Path rootLocation = Paths.get("/root/Application/blog/images");
+
     @Override
     public void init() throws IOException {
         Files.createDirectories(rootLocation);
@@ -32,6 +36,7 @@ public class FileSystemStorageService implements StorageService {
         try (InputStream inputStream = file.getInputStream()) {
             Files.copy(inputStream, rootLocation.resolve(filename));
         } catch (Exception e) {
+            e.printStackTrace();
             throw  e;
         }
         return filename;
