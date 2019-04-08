@@ -30,8 +30,8 @@ class Catergory extends Component {
                         {
                             this.props.articles.map((article, index) =>
                                 <li className='item' key={index}>
-                                    <span className='item-date'>{article.date.substring(0,10)}</span>
                                     <Link className='item-title' to={`/article/${article.id}`}>{article.title}</Link>
+                                    <span className='item-date'>{article.date.substring(0,10)}</span>
                                 </li>
                             )
                         }

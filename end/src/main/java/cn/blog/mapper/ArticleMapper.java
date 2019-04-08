@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface ArticleMapper {
 
-    @Select("select id, title,date from article where state=1 order by date desc")
+    @Select("select id, title,date,type from article where state=1 order by date desc")
     List<Article> getArticleList();
 
     @Select("select id, title,date from article where state=1 and type=#{type} order by date desc")

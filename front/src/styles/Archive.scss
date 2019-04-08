@@ -20,6 +20,7 @@
                 background-color: white;
                 padding-right: 40px;
                 position: relative;
+                display: inline-block;
                 &::after {
                     position: absolute;
                     content: "";
@@ -34,6 +35,16 @@
                 position: relative;
                 color: #395692;
                 font-weight: bold;
+                height: 20px;
+                display: inline-block;
+                width: 60%;
+                .link {
+                    height: 20px;
+                    width: 100%;
+                    overflow: hidden;
+                    text-overflow: clip;
+                    display: inline-block;
+                }
                 &::before {
                     cursor: default;
                     box-sizing: border-box;
@@ -46,6 +57,7 @@
                     background-color: white;
                     border-radius: 7px;
                     border: 2px solid #aaaaaa;
+                    z-index: 200;
                 }
             }
             &:hover {

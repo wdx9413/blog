@@ -52,17 +52,18 @@ export default class Create extends React.Component {
 
     async createOrEditArticle(e) {
         // title不为空
-        var children = e.target.parentNode.children;
-        var title = children[2].value;
+        var children = e.target.parentNode.parentNode.children[1].children;
+        var title = children[1].value;
+        console.log(children);
         if (title.length <= 0) {
-            children[2].style.outlineWidth = '1px';
+            children[1].style.outlineWidth = '1px';
             setTimeout(() => {
-                children[2].style.outlineWidth = '0px';
+                children[1].style.outlineWidth = '0px';
             }, 300);
             return;
         }
         //
-        var type = children[1].value;
+        var type = children[0].value;
         var content = draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()));
         var article = { title, type, content };
         if (this.state.id === '') {

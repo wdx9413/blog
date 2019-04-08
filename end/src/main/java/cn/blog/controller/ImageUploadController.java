@@ -17,6 +17,7 @@ public class ImageUploadController {
     Result upload(@RequestParam("image") MultipartFile file) throws Exception {
         return new Result(StatusCode.SUCCESS, storageService.store(file));
     }
+
     @GetMapping("/images/{filename:.+}")
     Resource get(@PathVariable String filename) throws Exception {
         return storageService.loadAsResource(filename);

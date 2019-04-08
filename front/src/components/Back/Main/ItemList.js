@@ -2,6 +2,9 @@ import React from 'react';
 import Item from './Item';
 import '../../../styles/Back/ItemList.scss'
 export default class ItemList extends React.Component {
+    componentWillMount() {
+        this.props.setDefaultArticleList();
+    }
     render() {
         return (
             <ul className='item-list'>

@@ -25,6 +25,7 @@ public class ReplyServiceImpl implements ReplyService {
     public List<Reply> getReplyListByCommentId(String commentId) {
         return replyMapper.getReplyListByCommentId(commentId);
     }
+
     @Transactional
     public void insertReply(Reply reply) {
         // 如果visitor不存在则创建这个人

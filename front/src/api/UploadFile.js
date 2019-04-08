@@ -1,9 +1,9 @@
-import { path } from ".";
+import { imgPath } from ".";
 
 export async function uploadFileAsync(file) {
     const formData = new FormData();
     formData.append('image', file, file.name);
-    let response = await fetch(`${path}/upload`, {
+    let response = await fetch(`${imgPath}/upload`, {
         method: 'POST',
         body: formData,
         credentials: 'include',
@@ -13,7 +13,7 @@ export async function uploadFileAsync(file) {
     });
     let jsonObj = await response.json();
     if (jsonObj.code === 20000) {
-        return {data: {link : `${path}/images/${jsonObj.data}`}}
+        return {data: {link : `${imgPath}/images/${jsonObj.data}`}}
     }
     console.error("error"); 
 }

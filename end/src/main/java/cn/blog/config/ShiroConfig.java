@@ -20,10 +20,13 @@ import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -35,13 +38,16 @@ public class ShiroConfig {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+    @Autowired
+    EhCacheManager cacheManager;
+
     @Bean
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
         securityManager.setRealm(userRealm(hashedCredentialsMatcher()));
         securityManager.setRememberMeManager(rememberMeManager());
         securityManager.setSessionManager(sessionManager());
-        securityManager.setCacheManager(cacheManager());
+        securityManager.setCacheManager(cacheManager);
         return securityManager;
     }
 
@@ -61,6 +67,11 @@ public class ShiroConfig {
         simpleCookie.setMaxAge(-1);
         return simpleCookie;
     }
+
+//    @Bean("shiroCache")
+//    public CacheManager cacheManager() {
+//        return new EhCacheManager();
+//    }
 
     @Bean
     public CookieRememberMeManager rememberMeManager() {
@@ -93,10 +104,6 @@ public class ShiroConfig {
         return defaultAAP;
     }
 
-    @Bean
-    public CacheManager cacheManager() {
-        return new EhCacheManager();
-    }
 
     @Bean
     public SessionDAO sessionDAO() {
